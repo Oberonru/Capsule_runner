@@ -6,8 +6,10 @@ public class MoveController : MonoBehaviour
     private float _horizontal;
     private bool _isGround;
     [SerializeField] private float speed = 2f;
+    [SerializeField] private float squatSpeed = 1f;
     [SerializeField] private float jumpForce;
     [SerializeField] private float friction;
+    [SerializeField] private Transform characterTransform;
 
     private void Start()
     {
@@ -30,6 +32,17 @@ public class MoveController : MonoBehaviour
             Jump();
         }
 
+        if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.LeftControl) ||
+            _isGround == false)
+        {
+            Squat();
+        }
+        else
+        {
+            characterTransform.localScale =
+                Vector3.Lerp(characterTransform.localScale, new Vector3(1, 1, 1), squatSpeed);
+        }
+
         if (Input.GetKeyDown(KeyCode.Q))
         {
             SchowNormale();
@@ -46,6 +59,12 @@ public class MoveController : MonoBehaviour
     private void Jump()
     {
         _rb.AddForce(0, jumpForce, 0, ForceMode.VelocityChange);
+    }
+
+    private void Squat()
+    {
+        Vector3 scale = characterTransform.localScale;
+        characterTransform.localScale = Vector3.Lerp(scale, new Vector3(1, 0.5f, 1), squatSpeed * 2);
     }
 
     private void OnCollisionStay(Collision other)
