@@ -672,8 +672,8 @@ Transform:
   m_GameObject: {fileID: 746007509}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.5, z: 0}
-  m_LocalScale: {x: 40, y: 1, z: 1}
+  m_LocalPosition: {x: -1.5956, y: -0.5403, z: 0}
+  m_LocalScale: {x: 36.806828, y: 0.91440827, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1044,6 +1044,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1064352562}
+  - component: {fileID: 1064352563}
   m_Layer: 0
   m_Name: BulletSpawnPoint
   m_TagString: Untagged
@@ -1067,6 +1068,19 @@ Transform:
   - {fileID: 438675707}
   m_Father: {fileID: 361694977}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1064352563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1064352561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7de77ae2101d42e998d67dfeed6455b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 6652453648117085215, guid: df2b7736d136d4cd5b57be0bf116f80f, type: 3}
 --- !u!1 &1096520495
 GameObject:
   m_ObjectHideFlags: 0
@@ -1308,7 +1322,7 @@ SphereCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1438159551}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 652d6538c039342f9a119a9cf006baab, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
