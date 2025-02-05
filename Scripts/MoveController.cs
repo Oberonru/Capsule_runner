@@ -64,7 +64,7 @@ public class MoveController : MonoBehaviour
         }
     }
 
-    private void OnCollisionExit(Collision other)
+    private void OnCollisionExit()
     {
         _isGround = false;
     }
