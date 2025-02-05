@@ -42,18 +42,6 @@ public class MoveController : MonoBehaviour
             characterTransform.localScale =
                 Vector3.Lerp(characterTransform.localScale, new Vector3(1, 1, 1), squatSpeed);
         }
-
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            SchowNormale();
-        }
-    }
-
-    private void SchowNormale()
-    {
-        float normale = Vector3.Dot(transform.right, new Vector3(_horizontal, 0, 0));
-
-        print("normale : " + normale);
     }
 
     private void Jump()
@@ -72,7 +60,6 @@ public class MoveController : MonoBehaviour
         foreach (var contact in other.contacts)
         {
             float angle = Vector3.Angle(contact.normal, Vector3.up);
-            print(angle);
             _isGround = angle <= 45f;
         }
     }
