@@ -3,17 +3,19 @@ using UnityEngine;
 public class GunAction : MonoBehaviour
 {
     [SerializeField] private Transform aim;
+    private Camera _camera;
     private Plane _plane;
     
     private void Start()
     {
         _plane = new Plane(-1 * Vector3.forward, Vector3.zero);
+        _camera = FindObjectOfType<Camera>();
     }
 
     private void Update()
     {
         float distance;
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
         _plane.Raycast(ray, out distance);
         Vector3 point = ray.GetPoint(distance);
 

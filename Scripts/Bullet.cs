@@ -1,18 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private GameObject bumEffectPrefab;
+
+    private void Start()
     {
-        
+        Destroy(gameObject, 4f);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnCollisionEnter(Collision other)
     {
-        
+        Destroy(gameObject);
+        GameObject effect = Instantiate(bumEffectPrefab, transform.position, Quaternion.identity);
     }
 }

@@ -10,6 +10,8 @@ public class MoveController : MonoBehaviour
     [SerializeField] private float jumpForce;
     [SerializeField] private float friction;
     [SerializeField] private Transform characterTransform;
+    [SerializeField] private Transform aimTransform;
+    private float angle;
 
     private void Start()
     {
@@ -27,6 +29,11 @@ public class MoveController : MonoBehaviour
     {
         _horizontal = Input.GetAxis("Horizontal");
 
+        Vector3 rotateDirection = aimTransform.position - transform.position;
+        //тут не логично и не понятно, чтобы повернуть объект в направлении оси z
+        //нужно оставить только X ветку, а по факту вращается ось Y
+        transform.rotation = Quaternion.LookRotation(new Vector3(rotateDirection.x, 0, 0));
+
         if (Input.GetKeyDown(KeyCode.Space) && _isGround)
         {
             Jump();
@@ -42,6 +49,8 @@ public class MoveController : MonoBehaviour
             characterTransform.localScale =
                 Vector3.Lerp(characterTransform.localScale, new Vector3(1, 1, 1), squatSpeed);
         }
+        
+        
     }
 
     private void Jump()
