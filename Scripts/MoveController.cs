@@ -20,8 +20,10 @@ public class MoveController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _rb.AddForce(speed * _horizontal, 0, 0, ForceMode.VelocityChange);
-        //drag только по оси х
+        float currentSpeed = _isGround ? speed : speed / 3;
+        _rb.AddForce(currentSpeed * _horizontal, 0, 0, ForceMode.VelocityChange);
+
+        //     //drag только по оси х
         _rb.AddForce(-1 * _rb.velocity.x * friction, 0, 0, ForceMode.VelocityChange);
     }
 
@@ -49,8 +51,6 @@ public class MoveController : MonoBehaviour
             characterTransform.localScale =
                 Vector3.Lerp(characterTransform.localScale, new Vector3(1, 1, 1), squatSpeed);
         }
-        
-        
     }
 
     private void Jump()
