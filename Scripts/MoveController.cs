@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class MoveController : MonoBehaviour
 {
+    #region fields
+    
     private Rigidbody _rb;
     private float _horizontal;
     private bool _isGround;
@@ -11,13 +13,21 @@ public class MoveController : MonoBehaviour
     [SerializeField] private float friction;
     [SerializeField] private Transform characterTransform;
     [SerializeField] private Transform aimTransform;
-    private float angle;
+    [SerializeField] private Transform bodyTransform;
+    private float _angle;
+    private float _mouseX;
+    #endregion
+
+    #region start
 
     private void Start()
     {
         _rb = GetComponent<Rigidbody>();
     }
 
+    #endregion
+
+    #region updates
     private void FixedUpdate()
     {
         float currentSpeed = _isGround ? speed : speed / 3;
@@ -30,11 +40,18 @@ public class MoveController : MonoBehaviour
     private void Update()
     {
         _horizontal = Input.GetAxis("Horizontal");
+        _mouseX = -1 * Input.GetAxis("Mouse X");
+        
+        _angle += _mouseX;
+        _angle = Mathf.Clamp(_angle, 160f, 210f);
 
-        Vector3 rotateDirection = aimTransform.position - transform.position;
+        Vector3 rotateDirection = aimTransform.position - bodyTransform.position;
         //тут не логично и не понятно, чтобы повернуть объект в направлении оси z
         //нужно оставить только X ветку, а по факту вращается ось Y
-        transform.rotation = Quaternion.LookRotation(new Vector3(rotateDirection.x, 0, 0));
+        //rotateDirection.x = Mathf.Clamp(rotateDirection.x, 130f, 210f);
+            
+        //bodyTransform.rotation = Quaternion.LookRotation(new Vector3(rotateDirection.x, 0, 0));
+        transform.localEulerAngles = new Vector3(0, _angle, 0);
 
         if (Input.GetKeyDown(KeyCode.Space) && _isGround)
         {
@@ -52,6 +69,10 @@ public class MoveController : MonoBehaviour
                 Vector3.Lerp(characterTransform.localScale, new Vector3(1, 1, 1), squatSpeed);
         }
     }
+
+    #endregion
+
+    #region methods
 
     private void Jump()
     {
@@ -77,4 +98,6 @@ public class MoveController : MonoBehaviour
     {
         _isGround = false;
     }
+
+    #endregion
 }

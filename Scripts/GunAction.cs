@@ -12,7 +12,7 @@ public class GunAction : MonoBehaviour
         _camera = FindObjectOfType<Camera>();
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         float distance;
         Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
