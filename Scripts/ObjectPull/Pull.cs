@@ -1,6 +1,6 @@
+using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
 
 public class Pull<T> where T: MonoBehaviour
 {
@@ -20,7 +20,7 @@ public class Pull<T> where T: MonoBehaviour
         }
     }
 
-    public T Get()
+    public T Get(UnityEngine.Vector3 position, UnityEngine.Quaternion rotation)
     {
         T obj = _objects.FirstOrDefault(o => !o.isActiveAndEnabled);
 
@@ -28,6 +28,8 @@ public class Pull<T> where T: MonoBehaviour
         {
            obj = Create();
         }
+        obj.gameObject.transform.position = position;
+        obj.gameObject.transform.rotation = rotation;
         obj.gameObject.SetActive(true);
         
         return obj;
@@ -43,6 +45,6 @@ public class Pull<T> where T: MonoBehaviour
 
     public void Release(T obj)
     {
-        obj.gameObject.SetActive(true);
+        obj.gameObject.SetActive(false);
     }
 }

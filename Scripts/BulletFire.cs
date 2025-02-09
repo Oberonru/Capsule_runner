@@ -1,12 +1,12 @@
+using DefaultNamespace;
 using UnityEngine;
 
 public class BulletFire : MonoBehaviour
 {
-    [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private float bulletForce = 1f;
     [SerializeField] private AudioSource fire;
     [SerializeField] private GameObject flash;
-
+    [SerializeField] private int damage;
     private float _gameTime;
 
     private void Update()
@@ -22,10 +22,13 @@ public class BulletFire : MonoBehaviour
 
     private void Schoot()
     {
-        GameObject bullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
-        bullet.GetComponent<Rigidbody>().velocity = transform.forward * bulletForce;
+        Bullet bulletSpawn = BulletPull.Instance.GetBullet(transform.position, transform.rotation);
+        bulletSpawn.Init(damage);
+        bulletSpawn.Rigidbody.velocity = transform.forward * bulletForce;
+        
         fire.pitch = Random.Range(0.8f, 1.2f);
         fire.Play();
+        
         flash.SetActive(true);
         Invoke("HideFlash", 0.1f);
     }

@@ -5,8 +5,10 @@ namespace Enemies
 {
     public class ScoreView: MonoBehaviour
     {
-        //[SerializeField] private TMP_Text scoreText;
+        [SerializeField] private TextMeshProUGUI scoreText;
+        [SerializeField] private int scoreChangedValue;
         private int _score;
+        
         private void Start()
         {
             EventManager.EnemyDied += OnEnemyDied;
@@ -14,10 +16,9 @@ namespace Enemies
 
         private void OnEnemyDied()
         {
-            //а если другое количество очкв, как изменить
-            _score++;
+            _score += scoreChangedValue;
             print("Score " + _score);
-            //scoreText.text = "Score: "  + _score.ToString("0.0");
+            scoreText.text = "Score: "  + _score.ToString("0.0");
         }
     }
 }

@@ -1,26 +1,47 @@
+using System.Collections;
 using DefaultNamespace;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    [SerializeField] private GameObject bumEffectPrefab;
+    public Rigidbody Rigidbody => _rb;
+    //[SerializeField] private GameObject bumEffectPrefab;
+    [SerializeField] private Rigidbody _rb;
+    private int _damage = 1;
 
-    //Уррон от пули, как делать зависящим от оружия или еще чего то
-    [SerializeField] private int damage = 1;
+    public void Init(int damage)
+    {
+        this._damage = damage;
+    }
 
     private void Start()
     {
-        Destroy(gameObject, 4f);
+        _rb = GetComponent<Rigidbody>();
+        Invoke("DestroyOfPull", 4f);
     }
 
     private void OnCollisionEnter(Collision other)
     {
         if (other.collider.gameObject.TryGetComponent<IDamagable>(out var component))
         {
-            component.ApplyDamage(damage);
+            component.ApplyDamage(_damage);
         }
 
-        Destroy(gameObject);
-        GameObject effect = Instantiate(bumEffectPrefab, transform.position, Quaternion.identity);
+        DestroyOfPull();
+        EffectHit effect = EffectPull.Instance.GetEffectHit(this.transform.position, this.transform.rotation);
+
+        // фиг знает, но не выполняется
+        var value =  RealiseEffectWithDelay(effect, 5f);
+    }
+
+    private IEnumerator RealiseEffectWithDelay(EffectHit effect, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        EffectPull.Instance.ReleaseEffectHit(effect);
+    }
+    
+    private void DestroyOfPull()
+    {
+        BulletPull.Instance.ReleaseBullet(this);
     }
 }

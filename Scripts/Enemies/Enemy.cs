@@ -4,7 +4,7 @@ using TMPro;
 
 namespace Enemies
 {
-    public class Enemy: MonoBehaviour, IDamagable
+    public class Enemy : MonoBehaviour, IDamagable
     {
         [SerializeField] private int maxHealth;
         [SerializeField] private TMP_Text healthUI;
@@ -13,13 +13,14 @@ namespace Enemies
         private void Start()
         {
             _currentHealth = maxHealth;
+            healthUI.text = _currentHealth.ToString();
         }
 
         public void ApplyDamage(int damage)
         {
             _currentHealth -= damage;
             healthUI.text = _currentHealth.ToString();
-            
+
             if (_currentHealth < 1)
             {
                 Destroy(gameObject);
