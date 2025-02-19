@@ -3,19 +3,20 @@ using UnityEngine;
 public class MoveController : MonoBehaviour
 {
     #region fields
-    
+
     private Rigidbody _rb;
     private float _horizontal;
     private bool _isGround;
+    private float _angle;
+    private float _mouseX;
     [SerializeField] private float speed = 2f;
     [SerializeField] private float squatSpeed = 1f;
     [SerializeField] private float jumpForce;
     [SerializeField] private float friction;
     [SerializeField] private Transform characterTransform;
     [SerializeField] private Transform aimTransform;
-    [SerializeField] private Transform bodyTransform;
-    private float _angle;
-    private float _mouseX;
+    //[SerializeField] private Transform bodyTransform;
+
     #endregion
 
     #region start
@@ -28,12 +29,13 @@ public class MoveController : MonoBehaviour
     #endregion
 
     #region updates
+
     private void FixedUpdate()
     {
         float currentSpeed = _isGround ? speed : speed / 3;
         _rb.AddForce(currentSpeed * _horizontal, 0, 0, ForceMode.VelocityChange);
 
-        //     //drag только по оси х
+        //drag только по оси х
         _rb.AddForce(-1 * _rb.velocity.x * friction, 0, 0, ForceMode.VelocityChange);
     }
 
@@ -41,15 +43,15 @@ public class MoveController : MonoBehaviour
     {
         _horizontal = Input.GetAxis("Horizontal");
         _mouseX = -1 * Input.GetAxis("Mouse X");
-        
+
         _angle += _mouseX;
         _angle = Mathf.Clamp(_angle, 160f, 210f);
 
-        Vector3 rotateDirection = aimTransform.position - bodyTransform.position;
+        //Vector3 rotateDirection = aimTransform.position - bodyTransform.position;
         //тут не логично и не понятно, чтобы повернуть объект в направлении оси z
         //нужно оставить только X ветку, а по факту вращается ось Y
         //rotateDirection.x = Mathf.Clamp(rotateDirection.x, 130f, 210f);
-            
+
         //bodyTransform.rotation = Quaternion.LookRotation(new Vector3(rotateDirection.x, 0, 0));
         transform.localEulerAngles = new Vector3(0, _angle, 0);
 

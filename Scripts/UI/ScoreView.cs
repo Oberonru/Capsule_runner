@@ -6,18 +6,18 @@ namespace Enemies
     public class ScoreView: MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI scoreText;
-        [SerializeField] private int scoreChangedValue;
+        
         private int _score;
         
         private void Start()
         {
-            EventManager.EnemyDied += OnEnemyDied;
+            EventManager.CharacterDied += OnCharacterDied;
         }
 
-        private void OnEnemyDied()
+        private void OnCharacterDied()
         {
-            _score += scoreChangedValue;
-            print("Score " + _score);
+            print("Score view enable");
+            _score++;
             scoreText.text = "Score: "  + _score.ToString("0.0");
         }
     }

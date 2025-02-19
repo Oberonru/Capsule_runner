@@ -1,13 +1,12 @@
+using UnityEngine;
 using System.Collections;
 using DefaultNamespace;
-using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public Rigidbody Rigidbody => _rb;
-    //[SerializeField] private GameObject bumEffectPrefab;
-    [SerializeField] private Rigidbody _rb;
     private int _damage = 1;
+    [SerializeField] private Rigidbody _rb;
+    public Rigidbody Rigidbody => _rb;
 
     public void Init(int damage)
     {
@@ -28,10 +27,9 @@ public class Bullet : MonoBehaviour
         }
 
         DestroyOfPull();
+        //Клон пули уже разрушился и уже выдает ошибку, когда пробую вызвать эффеект
         EffectHit effect = EffectPull.Instance.GetEffectHit(this.transform.position, this.transform.rotation);
-
-        // фиг знает, но не выполняется
-        var value =  RealiseEffectWithDelay(effect, 5f);
+        //StartCoroutine(RealiseEffectWithDelay(effect, 1f));
     }
 
     private IEnumerator RealiseEffectWithDelay(EffectHit effect, float delay)
@@ -39,7 +37,7 @@ public class Bullet : MonoBehaviour
         yield return new WaitForSeconds(delay);
         EffectPull.Instance.ReleaseEffectHit(effect);
     }
-    
+
     private void DestroyOfPull()
     {
         BulletPull.Instance.ReleaseBullet(this);

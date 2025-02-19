@@ -1,21 +1,14 @@
 using System;
-using UnityEngine;
 
 namespace Enemies
 {
     public class EventManager
     {
-        public static event Action EnemyDied;
-        public static event Action<int> HealthChange;
-        
-        public static void OnEnemyDied()
-        {
-            EnemyDied?.Invoke();
-        }
+        public static event Action CharacterDied;
 
-        public static void OnHealthChange(int value)
+        public static void OnCharacterDied()
         {
-            HealthChange?.Invoke(value);
+            CharacterDied?.Invoke();
         }
     }
 }

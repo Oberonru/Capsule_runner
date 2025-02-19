@@ -3,11 +3,11 @@ using UnityEngine;
 
 public class BulletFire : MonoBehaviour
 {
+    private float _gameTime;
     [SerializeField] private float bulletForce = 1f;
     [SerializeField] private AudioSource fire;
     [SerializeField] private GameObject flash;
     [SerializeField] private int damage;
-    private float _gameTime;
 
     private void Update()
     {

@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class GunAction : MonoBehaviour
 {
-    [SerializeField] private Transform aim;
     private Camera _camera;
     private Plane _plane;
-    
+    [SerializeField] private Transform aim;
+
     private void Start()
     {
         _plane = new Plane(-1 * Vector3.forward, Vector3.zero);
