@@ -580,6 +580,38 @@ Transform:
   m_Children: []
   m_Father: {fileID: 477244055}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &398514192
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 398514193}
+  m_Layer: 0
+  m_Name: pivot_form
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &398514193
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 398514192}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.99, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 976230427}
+  m_Father: {fileID: 1096520496}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &473173943
 GameObject:
   m_ObjectHideFlags: 0
@@ -1555,6 +1587,7 @@ MonoBehaviour:
   jumpForce: 0
   friction: 0
   aimTransform: {fileID: 344383233}
+  formPivot: {fileID: 0}
 --- !u!114 &958425992
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1688,12 +1721,12 @@ Transform:
   m_GameObject: {fileID: 976230426}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.99, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2084418391}
-  m_Father: {fileID: 1096520496}
+  m_Father: {fileID: 398514193}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &976230433
 MeshRenderer:
@@ -1944,7 +1977,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1438159552}
-  - {fileID: 976230427}
+  - {fileID: 398514193}
   - {fileID: 2026426184}
   m_Father: {fileID: 1348896944}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2309,14 +2342,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1348896943}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.105, z: 0}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1096520496}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &1348896945
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2334,6 +2367,7 @@ MonoBehaviour:
   jumpForce: 15
   friction: 0.6
   aimTransform: {fileID: 344383233}
+  formPivot: {fileID: 398514193}
 --- !u!54 &1348896946
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2513,7 +2547,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1438159551}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ad3beede013a2479e909000767e8f132, type: 3}
   m_Name: 

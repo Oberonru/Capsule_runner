@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class MoveController : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class MoveController : MonoBehaviour
     [SerializeField] private float jumpForce;
     [SerializeField] private float friction;
     [SerializeField] private Transform aimTransform;
-    private Transform _playerTransform;
+    [SerializeField] private Transform formPivot;
     private Rigidbody _rb;
     private float _horizontal;
     private bool _isGround;
@@ -23,7 +24,6 @@ public class MoveController : MonoBehaviour
     private void Start()
     {
         _rb = GetComponent<Rigidbody>();
-        _playerTransform = GetComponent<Transform>();
     }
 
     #endregion
@@ -67,8 +67,8 @@ public class MoveController : MonoBehaviour
         }
         else
         {
-            _playerTransform.localScale =
-                Vector3.Lerp(_playerTransform.localScale, new Vector3(1, 1, 1), squatSpeed);
+            formPivot.localScale =
+                Vector3.Lerp(formPivot.localScale, new Vector3(1, 1, 1), squatSpeed);
         }
     }
 
@@ -83,8 +83,8 @@ public class MoveController : MonoBehaviour
 
     private void Squat()
     {
-        Vector3 scale = _playerTransform.localScale;
-        _playerTransform.localScale = Vector3.Lerp(scale, new Vector3(1, 0.5f, 1), squatSpeed * 2);
+        Vector3 scale = formPivot.localScale;
+        formPivot.localScale = Vector3.Lerp(scale, new Vector3(1, 0.7f, 1), squatSpeed * 2);
     }
 
     private void OnCollisionStay(Collision other)
