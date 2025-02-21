@@ -192,9 +192,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21522bc8232ca4acfba9714b64073142, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bumEffectPrefab: {fileID: 1090746884428094, guid: e1c9b870f7b049747ba72932d9e7a8b1, type: 3}
-  damage: 1
-  _rb: {fileID: -4368546240977330885}
+  rb: {fileID: -4368546240977330885}
 --- !u!54 &-4368546240977330885
 Rigidbody:
   m_ObjectHideFlags: 0

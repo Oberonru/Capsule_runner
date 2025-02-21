@@ -1,6 +1,4 @@
-using DefaultNamespace;
 using UnityEngine;
-
 public class BulletFire : MonoBehaviour
 {
     private float _gameTime;

@@ -3,10 +3,9 @@ using UnityEngine;
 public class PointFollower : MonoBehaviour
 {
     [SerializeField] private Transform target;
-    [SerializeField] private float lerpSpeed = 1f;
 
-    private void LateUpdate()
+    private void Update()
     {
-        transform.position = Vector3.Lerp(transform.position, target.position, lerpSpeed);
+        transform.position = target.position;
     }
 }

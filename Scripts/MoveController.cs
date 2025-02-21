@@ -3,20 +3,19 @@ using UnityEngine;
 public class MoveController : MonoBehaviour
 {
     #region fields
-
+    public Rigidbody Rb => _rb;
+    [SerializeField] private float speed = 2f;
+    [SerializeField] private float squatSpeed = 1f;
+    [SerializeField] private float jumpForce;
+    [SerializeField] private float friction;
+    [SerializeField] private Transform aimTransform;
+    private Transform _playerTransform;
     private Rigidbody _rb;
     private float _horizontal;
     private bool _isGround;
     private float _angle;
     private float _mouseX;
-    [SerializeField] private float speed = 2f;
-    [SerializeField] private float squatSpeed = 1f;
-    [SerializeField] private float jumpForce;
-    [SerializeField] private float friction;
-    [SerializeField] private Transform characterTransform;
-    [SerializeField] private Transform aimTransform;
-    //[SerializeField] private Transform bodyTransform;
-
+    
     #endregion
 
     #region start
@@ -24,6 +23,7 @@ public class MoveController : MonoBehaviour
     private void Start()
     {
         _rb = GetComponent<Rigidbody>();
+        _playerTransform = GetComponent<Transform>();
     }
 
     #endregion
@@ -67,8 +67,8 @@ public class MoveController : MonoBehaviour
         }
         else
         {
-            characterTransform.localScale =
-                Vector3.Lerp(characterTransform.localScale, new Vector3(1, 1, 1), squatSpeed);
+            _playerTransform.localScale =
+                Vector3.Lerp(_playerTransform.localScale, new Vector3(1, 1, 1), squatSpeed);
         }
     }
 
@@ -83,8 +83,8 @@ public class MoveController : MonoBehaviour
 
     private void Squat()
     {
-        Vector3 scale = characterTransform.localScale;
-        characterTransform.localScale = Vector3.Lerp(scale, new Vector3(1, 0.5f, 1), squatSpeed * 2);
+        Vector3 scale = _playerTransform.localScale;
+        _playerTransform.localScale = Vector3.Lerp(scale, new Vector3(1, 0.5f, 1), squatSpeed * 2);
     }
 
     private void OnCollisionStay(Collision other)

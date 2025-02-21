@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   effectPrefab: {fileID: 3088104024053529450}
+  hit: {fileID: 6011071055563493590}
 --- !u!1001 &5896459939917764226
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -98,7 +99,24 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 198143359764661844, guid: e1c9b870f7b049747ba72932d9e7a8b1, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198665224334910722, guid: e1c9b870f7b049747ba72932d9e7a8b1, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198730746747874818, guid: e1c9b870f7b049747ba72932d9e7a8b1, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198966610411580086, guid: e1c9b870f7b049747ba72932d9e7a8b1, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 114805270761689880, guid: e1c9b870f7b049747ba72932d9e7a8b1, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -106,5 +124,10 @@ PrefabInstance:
 --- !u!4 &5891849143787094972 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4611933240038718, guid: e1c9b870f7b049747ba72932d9e7a8b1, type: 3}
+  m_PrefabInstance: {fileID: 5896459939917764226}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &6011071055563493590 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 198143359764661844, guid: e1c9b870f7b049747ba72932d9e7a8b1, type: 3}
   m_PrefabInstance: {fileID: 5896459939917764226}
   m_PrefabAsset: {fileID: 0}

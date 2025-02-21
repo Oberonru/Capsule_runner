@@ -1,18 +1,21 @@
 using UnityEngine;
+using UnityEngine.Events;
 using Enemies;
+using UnityEngine.Serialization;
 
 namespace DefaultNamespace
 {
     public class Player : Character, IHeal
     {
-        [SerializeField] private HealthUI healthUI;
-        [SerializeField] private BonusHealth bonusHealth;
-        [SerializeField] private InnerHitEffect hitEffect;
-        [SerializeField] private BlinkEffect blinkEffect;
+        //вопрос в Enemy: - как тут наносить урон, откуда его борать, из пули или плеера? 
+        public MoveController MoveController => moveController;
+        public UnityEvent OnApplyDamageEvent;
+        [SerializeField] private MoveController moveController;
+        [SerializeField] private HealthUI healthUI; 
 
         private void Start()
         {
-            healthUI.InitUiHealth(CurrentHealth);
+            healthUI.InitUiHealth(MaxHealth);
             UpdateHealth();
         }
 
@@ -24,12 +27,12 @@ namespace DefaultNamespace
         public override void ApplyDamage(int damage)
         {
             base.ApplyDamage(damage);
-            hitEffect.ShowInnerHitEffect();
-            blinkEffect.Blinken();
+            OnApplyDamageEvent.Invoke();
             UpdateHealth();
 
             if (CurrentHealth < 1)
             {
+                CurrentHealth = 0;
                 Destroy(gameObject);
                 EventManager.OnCharacterDied();
             }
@@ -37,12 +40,13 @@ namespace DefaultNamespace
 
         public void ApplyHeal(int health)
         {
-            if (CurrentHealth < MaxHealth)
+            CurrentHealth += health;
+            if (CurrentHealth > MaxHealth)
             {
-                CurrentHealth += health;
-                bonusHealth.HealthSound.Play();
-                UpdateHealth();
+                MaxHealth = CurrentHealth;
             }
+            
+            UpdateHealth();
         }
     }
 }

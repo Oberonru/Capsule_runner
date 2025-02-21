@@ -1,12 +1,11 @@
-using UnityEngine;
-using System.Collections;
 using DefaultNamespace;
+using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
     private int _damage = 1;
-    [SerializeField] private Rigidbody _rb;
-    public Rigidbody Rigidbody => _rb;
+    [SerializeField] private Rigidbody rb;
+    public Rigidbody Rigidbody => rb;
 
     public void Init(int damage)
     {
@@ -15,8 +14,12 @@ public class Bullet : MonoBehaviour
 
     private void Start()
     {
-        _rb = GetComponent<Rigidbody>();
-        Invoke("DestroyOfPull", 4f);
+        rb = GetComponent<Rigidbody>();
+    }
+
+    private void OnEnable()
+    {
+        Invoke("RealizeOfPull", 3f);
     }
 
     private void OnCollisionEnter(Collision other)
@@ -26,19 +29,12 @@ public class Bullet : MonoBehaviour
             component.ApplyDamage(_damage);
         }
 
-        DestroyOfPull();
-        //Клон пули уже разрушился и уже выдает ошибку, когда пробую вызвать эффеект
-        EffectHit effect = EffectPull.Instance.GetEffectHit(this.transform.position, this.transform.rotation);
-        //StartCoroutine(RealiseEffectWithDelay(effect, 1f));
+        RealizeOfPull();
+        EffectPull.Instance.GetEffectHit(this.transform.position, this.transform.rotation);
+        
     }
 
-    private IEnumerator RealiseEffectWithDelay(EffectHit effect, float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        EffectPull.Instance.ReleaseEffectHit(effect);
-    }
-
-    private void DestroyOfPull()
+    private void RealizeOfPull()
     {
         BulletPull.Instance.ReleaseBullet(this);
     }

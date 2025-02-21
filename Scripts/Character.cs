@@ -1,10 +1,8 @@
 using DefaultNamespace;
-using Enemies;
 using UnityEngine;
 
 public abstract class Character : MonoBehaviour, IDamagable
 {
-    
     [SerializeField] private int maxHealth;
     [SerializeField] private int currentHealth;
     public int MaxHealth
