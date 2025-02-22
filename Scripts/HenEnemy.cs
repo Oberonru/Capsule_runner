@@ -25,7 +25,6 @@ namespace DefaultNamespace
         private void FixedUpdate()
         {
             float distance = Vector3.Distance(transform.position, _playerPosition.position);
-            print(_rndDistance + " rndDistance update");
 
             if (distance < _rndDistance)
             {
