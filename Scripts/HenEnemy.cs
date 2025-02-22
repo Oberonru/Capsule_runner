@@ -19,7 +19,6 @@ namespace DefaultNamespace
             _playerPosition = GameManager.Instance.Player.transform;
             _startPosition = transform.position;
             _rndDistance = Random.Range(distanceLimit - distanceDelta, distanceLimit + distanceDelta);
-            print(_rndDistance + " rndDistance");
         }
 
         private void FixedUpdate()
