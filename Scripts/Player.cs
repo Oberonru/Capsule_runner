@@ -1,13 +1,11 @@
 using UnityEngine;
 using UnityEngine.Events;
 using Enemies;
-using UnityEngine.Serialization;
 
 namespace DefaultNamespace
 {
     public class Player : Character, IHeal
     {
-        //вопрос в Enemy: - как тут наносить урон, откуда его борать, из пули или плеера? 
         public MoveController MoveController => moveController;
         public UnityEvent OnApplyDamageEvent;
         [SerializeField] private MoveController moveController;
