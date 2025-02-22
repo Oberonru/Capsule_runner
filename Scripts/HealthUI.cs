@@ -23,7 +23,6 @@ public class HealthUI : MonoBehaviour
     
     public void ShowHealth(int healthCount)
     {
-        print(hercList.Count + " hercList.Count");
         for (int i = 0; i < hercList.Count; i++)
         {
             if (i < healthCount)
