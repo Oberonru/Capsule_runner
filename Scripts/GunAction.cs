@@ -19,7 +19,7 @@ public class GunAction : MonoBehaviour
         _plane.Raycast(ray, out distance);
         Vector3 point = ray.GetPoint(distance);
 
-        aim.position = point;
+        aim.position = new Vector3(point.x, point.y, -1f);
 
         Vector3 direction = point - transform.position;
         transform.rotation = Quaternion.LookRotation(direction);

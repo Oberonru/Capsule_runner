@@ -7,22 +7,10 @@ public class Enemy : Character
 {
     public UnityEvent OnApplyDamage;
     [SerializeField] private int enemyDamage = 1;
-    //private BlinkEffect blinkEffect;
-
-    // private void OnValidate()
-    // {
-    //     // if (!blinkEffect)
-    //     // {
-    //     //     blinkEffect = GetComponent<BlinkEffect>();
-    //     // }
-    //     //
-    //     // print("Blink effect" + blinkEffect);
-    // }
 
     public override void ApplyDamage(int damage)
     {
         base.ApplyDamage(damage);
-        //blinkEffect.Blinken();
         OnApplyDamage.Invoke();
 
         if (CurrentHealth < 1)
