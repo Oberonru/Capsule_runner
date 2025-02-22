@@ -17,7 +17,8 @@ namespace DefaultNamespace
 
         private void FixedUpdate()
         {
-            Vector3 direction = (playerPosition.position - transform.position).normalized;
+            Vector3 verticalShift = new Vector3(0f, 2f, 0f);
+            Vector3 direction = (playerPosition.position + verticalShift - transform.position).normalized;
             Vector3 force = _rb.mass * (direction * speed - _rb.velocity) / flyTime;
             _rb.AddForce(force);
         }

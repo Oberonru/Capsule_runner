@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CirculeRotation : MonoBehaviour
+public class Rotation : MonoBehaviour
 {
     [Range(0, 360)] [SerializeField] private int rotateSpeed = 120;
     [SerializeField] private Vector3 rotateDirection;
