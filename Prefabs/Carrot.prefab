@@ -83,7 +83,7 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.18
-  m_Height: 1.18
+  m_Height: 1.3
   m_Direction: 1
   m_Center: {x: 0, y: 0.12, z: 0}
 --- !u!114 &7604266167979579919
@@ -113,12 +113,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 1
   currentHealth: 0
+  attackDamage: 1
   OnApplyDamage:
     m_PersistentCalls:
       m_Calls: []
-  enemyDamage: 1
   playerRigidbody: {fileID: 6461214343341201394, guid: 64aca75b154d24eac8341cd53d8950da, type: 3}
-  force: 54
+  force: 39
 --- !u!1 &3781362414573902966
 GameObject:
   m_ObjectHideFlags: 0

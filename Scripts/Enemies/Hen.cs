@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace DefaultNamespace
 {
@@ -12,6 +14,7 @@ namespace DefaultNamespace
         private Transform _playerPosition;
         private Vector3 _startPosition;
         private float _rndDistance;
+        private float _attackTimer = 0f;
 
         private void Start()
         {
@@ -19,6 +22,11 @@ namespace DefaultNamespace
             _playerPosition = GameManager.Instance.Player.transform;
             _startPosition = transform.position;
             _rndDistance = Random.Range(distanceLimit - distanceDelta, distanceLimit + distanceDelta);
+        }
+
+        private void Update()
+        {
+            _attackTimer += Time.deltaTime;
         }
 
         private void FixedUpdate()
@@ -36,6 +44,15 @@ namespace DefaultNamespace
             {
                 transform.position = Vector3.MoveTowards(transform.position,
                     _startPosition, speed * 5 * Time.deltaTime);
+            }
+        }
+        
+        private void OnCollisionEnter(Collision other)
+        {
+            if (other.gameObject.TryGetComponent<Player>(out var component) && _attackTimer > 1)
+            {
+                _attackTimer = 0;
+                component.ApplyDamage(AttackDamage);
             }
         }
     }
