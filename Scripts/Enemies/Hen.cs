@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace DefaultNamespace
 {
-    public class HenEnemy : Enemy
+    public class Hen : Enemy
     {
         [SerializeField] private float speed = 1f;
         [SerializeField] private float flyTime = 1f;

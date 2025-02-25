@@ -1,11 +1,9 @@
-using System;
 using UnityEngine;
 
 namespace DefaultNamespace
 {
     public class EffectHit: MonoBehaviour
     {
-        [SerializeField] private GameObject effectPrefab;
         [SerializeField] private ParticleSystem hit;
 
         private void OnEnable()
@@ -16,7 +14,7 @@ namespace DefaultNamespace
 
         private void Release()
         {
-            EffectPull.Instance.ReleaseEffectHit(this);
+            EffectHitPull.Instance.ReleaseEffectHit(this);
         }
     }
 }

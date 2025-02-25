@@ -1,5 +1,5 @@
 using UnityEngine;
-public class BulletFire : MonoBehaviour
+public class GunFire : MonoBehaviour
 {
     private float _gameTime;
     [SerializeField] private float bulletForce = 1f;

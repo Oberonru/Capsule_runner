@@ -2,7 +2,6 @@ using DefaultNamespace;
 using UnityEngine;
 using UnityEngine.Events;
 
-[RequireComponent(typeof(BlinkEffect))]
 public class Enemy : Character
 {
     public UnityEvent OnApplyDamage;

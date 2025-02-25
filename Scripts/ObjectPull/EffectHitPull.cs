@@ -2,13 +2,13 @@ using UnityEngine;
 
 namespace DefaultNamespace
 {
-    public class EffectPull : MonoBehaviour
+    public class EffectHitPull : MonoBehaviour
     {
         [SerializeField] private EffectHit effectPrefab;
         [SerializeField] private int pullSize = 10;
         private Pull<EffectHit> _effectPull;
 
-        public static EffectPull Instance{ get; private set; }
+        public static EffectHitPull Instance{ get; private set; }
 
         private void Awake()
         {

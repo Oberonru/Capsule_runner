@@ -30,7 +30,7 @@ public class Bullet : MonoBehaviour
         }
 
         RealizeOfPull();
-        EffectPull.Instance.GetEffectHit(this.transform.position, this.transform.rotation);
+        EffectHitPull.Instance.GetEffectHit(this.transform.position, this.transform.rotation);
         
     }
 
